@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="compat"/>
+	<classpathentry excluding="org/eclipse/tm/terminal/connector/local/launcher/LocalMementoHandler.java|org/eclipse/tm/terminal/connector/local/launcher/LocalLauncherHandler.java|org/eclipse/tm/terminal/connector/local/controls/LocalWizardConfigurationPanel.java|org/eclipse/tm/terminal/connector/local/launcher/LocalLauncherDelegate.java" kind="src" path="connectors/local"/>
+	<classpathentry excluding="org/eclipse/tm/terminal/view/ui/streams/StreamsLauncherDelegate.java" kind="src" path="viewui"/>
+	<classpathentry excluding="org/eclipse/tm/terminal/view/core/TerminalContextPropertiesProviderFactory.java|org/eclipse/tm/terminal/view/core/preferences/ScopedEclipsePreferences.java|org/eclipse/tm/terminal/view/core/internal/PropertyTester.java|org/eclipse/tm/terminal/view/core/TerminalServiceFactory.java" kind="src" path="viewcore"/>
+	<classpathentry kind="src" path="cdt"/>
+	<classpathentry excluding="org/eclipse/tm/terminal/connector/process/ProcessSettingsPage.java|org/eclipse/tm/terminal/connector/process/ProcessLauncherDelegate.java" kind="src" path="connectors/process"/>
+	<classpathentry kind="lib" path="lib/swt.jar" sourcepath="lib/src.zip"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.29.0.v20230214-1401.jar" sourcepath="lib/org.eclipse.jface.source_3.29.0.v20230214-1401.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.17.100.v20230202-1341.jar" sourcepath="lib/org.eclipse.equinox.common.source_3.17.100.v20230202-1341.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.commands_3.10.400.v20230220-0932.jar" sourcepath="lib/org.eclipse.core.commands.source_3.10.400.v20230220-0932.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.18.300.v20230220-1352.jar" sourcepath="lib/org.eclipse.osgi.source_3.18.300.v20230220-1352.jar"/>
+	<classpathentry kind="lib" path="lib/com.sun.jna_5.8.0.v20210503-0343.jar" sourcepath="lib/com.sun.jna.source_5.8.0.v20210503-0343.jar"/>
+	<classpathentry kind="lib" path="lib/com.sun.jna.platform_5.8.0.v20221112-0806.jar" sourcepath="lib/com.sun.jna.platform.source_5.8.0.v20221112-0806.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
