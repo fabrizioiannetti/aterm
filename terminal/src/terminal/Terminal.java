@@ -19,6 +19,8 @@ public class Terminal {
 
 	private static int counter = 0;
 
+	// a factory to create Local connectors, i.e. to start the shell configured
+	// in the system
 	private static Factory localConnectorFactory = () -> {
 		ProcessSettings processSettings = new ProcessSettings();
 		String shell;
