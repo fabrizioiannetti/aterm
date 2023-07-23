@@ -45,7 +45,8 @@ public class Job {
 		return null;
 	}
 
-	public void setSystem(boolean b) {
+	public void setSystem(boolean value) {
+		runner.setDaemon(value);
 	}
 
 	public void schedule() {
