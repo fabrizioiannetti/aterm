@@ -122,7 +122,10 @@ public enum TerminalColorPresets {
 		presets.add(new Preset(TerminalMessages.TerminalColorPresets_TerminalDefaults));
 		presets.add(new Preset(TerminalMessages.TerminalColorPresets_EclipseLight) //
 				.set(FOREGROUND, getDefaultPreset().getRGB(BLACK)) //
-				.set(BACKGROUND, getDefaultPreset().getRGB(WHITE)));
+				.set(BACKGROUND, getDefaultPreset().getRGB(WHITE)) //
+				.set(SELECTION_BACKGROUND, getDefaultPreset().getRGB(BLACK)) //
+				.set(SELECTION_FOREGROUND, getDefaultPreset().getRGB(WHITE)) //
+				);
 		presets.add(new Preset(TerminalMessages.TerminalColorPresets_EclipseDark) //
 				.set(FOREGROUND, getDefaultPreset().getRGB(WHITE)) //
 				.set(BACKGROUND, getDefaultPreset().getRGB(BLACK)));
