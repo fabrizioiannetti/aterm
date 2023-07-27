@@ -273,10 +273,6 @@ public class StyleMap {
 	}
 
 	public void updateColors(Map<TerminalColor, RGB> colorMap) {
-		for (TerminalColor c : colorMap.keySet()) {
-			RGB rgb = colorMap.get(c);
-			System.out.println("CM: " + c + ": " + rgb);
-		}
 		fColorMap.putAll(colorMap);
 	}
 }
