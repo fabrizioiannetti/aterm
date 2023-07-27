@@ -7,13 +7,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.tm.internal.terminal.connector.TerminalConnector;
 import org.eclipse.tm.internal.terminal.connector.TerminalConnector.Factory;
 import org.eclipse.tm.internal.terminal.control.ITerminalListener;
-import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
-import org.eclipse.tm.internal.terminal.control.TerminalViewControlFactory;
 import org.eclipse.tm.internal.terminal.control.impl.TerminalPlugin;
 import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
 import org.eclipse.tm.internal.terminal.provisional.api.TerminalState;
 import org.eclipse.tm.terminal.connector.process.ProcessConnector;
 import org.eclipse.tm.terminal.connector.process.ProcessSettings;
+
+import terminal.ui.TerminalSession;
 
 public class Terminal {
 
@@ -38,8 +38,6 @@ public class Terminal {
 		Shell shell = new Shell();
 		shell.setText("Terminal");
 
-		ITerminalConnector[] connectors = new ITerminalConnector[1];
-		connectors[0] = makeLocalTerminalConnector();
 		ITerminalListener target = new ITerminalListener() {
 			@Override
 			public void setTerminalTitle(String title) {
@@ -53,14 +51,15 @@ public class Terminal {
 			}
 		};
 		// terminal widget
-		TerminalPlugin terminalPlugin = new TerminalPlugin();
+		new TerminalPlugin(); // TODO@fab is this necessary to create an instance?
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(shell);
-		ITerminalViewControl control = TerminalViewControlFactory.makeControl(target, shell, connectors, false);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(control.getRootControl());
-		control.setConnector(connectors[0]);
-		control.connectTerminal();
+		TerminalSession session = new TerminalSession(shell, target);
+		session.newTerminal(makeLocalTerminalConnector());
+		session.newTerminal(makeLocalTerminalConnector());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(session);
 
 		shell.open();
+
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();

@@ -552,7 +552,9 @@ public class TextCanvas extends GridCanvas {
 	public void setCursorEnabled(boolean enabled) {
 		if (enabled != fCursorEnabled) {
 			fCursorEnabled = enabled;
-			fCellCanvasModel.setCursorEnabled(fCursorEnabled);
+			// TODO@fab taken by the focus listener, otherwise two terminals created at start
+			// may both have a blinking cursor
+			//fCellCanvasModel.setCursorEnabled(fCursorEnabled);
 		}
 
 	}
