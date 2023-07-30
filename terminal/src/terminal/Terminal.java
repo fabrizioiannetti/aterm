@@ -2,7 +2,10 @@ package terminal;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.tm.internal.terminal.connector.TerminalConnector;
 import org.eclipse.tm.internal.terminal.connector.TerminalConnector.Factory;
@@ -45,6 +48,7 @@ public class Terminal {
 					shell.setText("Terminal - " + title);
 				});
 			}
+
 			@Override
 			public void setState(TerminalState state) {
 				// TODO Auto-generated method stub

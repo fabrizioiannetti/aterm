@@ -8,6 +8,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.tm.internal.terminal.control.ITerminalListener;
 import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
 import org.eclipse.tm.internal.terminal.control.TerminalViewControlFactory;
@@ -19,10 +23,58 @@ public class TerminalSession extends SashForm {
 
 	private List<ITerminalViewControl> terminals = new ArrayList<ITerminalViewControl>();
 
+	private class KeyBindings implements Listener {
+		private Shell shell;
+		private Display display;
+
+		public KeyBindings(Shell shell) {
+			this.shell = shell;
+			display = shell.getDisplay();
+			display.addFilter(SWT.KeyDown, this);
+		}
+
+		@Override
+		public void handleEvent(Event event) {
+			Shell activeShell = display.getActiveShell();
+//			System.out.printf("handleEvent(keyCode = )\n");
+			if (activeShell == shell) {
+				if ((event.stateMask & SWT.ALT) != 0) {
+					if (event.keyCode == SWT.ARROW_DOWN) {
+						event.type = SWT.None;
+						selectTerminal(event, 1);
+					} else if (event.keyCode == SWT.ARROW_UP) {
+						event.type = SWT.None;
+						selectTerminal(event, -1);
+					}
+				}
+			}
+		}
+
+		private void selectTerminal(Event event, int increment) {
+			int i = 0;
+			for (ITerminalViewControl terminal : terminals) {
+				if (terminal.getControl() == event.widget) {
+					int next_i = i + increment;
+					if (next_i >= 0 && next_i < terminals.size()) {
+						ITerminalViewControl nextTerminal = terminals.get(next_i);
+						if (nextTerminal != terminal) {
+							nextTerminal.setFocus();
+							break;
+						}
+					}
+				}
+				i++;
+			}
+		}
+
+	}
+
 	public TerminalSession(Composite parent, ITerminalListener listener) {
 		super(parent, SWT.VERTICAL);
 		setLayout(new FillLayout());
 		target = listener;
+
+		new KeyBindings(getShell());
 	}
 
 	public void newTerminal(ITerminalConnector connector) {

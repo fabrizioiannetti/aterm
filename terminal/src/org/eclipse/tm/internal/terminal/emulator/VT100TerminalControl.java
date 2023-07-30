@@ -937,6 +937,10 @@ public class VT100TerminalControl implements ITerminalControlForText, ITerminalC
 			if (getState() == TerminalState.CONNECTING)
 				return;
 
+			// TODO@fab
+			if ((event.stateMask & SWT.ALT) != 0) {
+				return;
+			}
 			//TODO we should no longer handle copy & paste specially.
 			//Instead, we should have Ctrl+Shift always go to local since there is no escape sequence for this.
 			//On Mac, Command+Anything already goes always to local.
